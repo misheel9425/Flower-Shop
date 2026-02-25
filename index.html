@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Flower Shop</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial;
+            background-color: #777;
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            background-color: red;
+            width: 80px;
+            height: 100vh;
+            position: fixed;
+        }
+
+        .sidebar a {
+            display: block;
+            text-align: center;
+            padding: 15px 5px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .sidebar img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .sidebar span {
+            display: block;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* HEADER */
+        .header {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            margin-left: 80px;
+        }
+
+        .header h1 {
+            display: inline;
+            font-size: 40px;
+            margin-right: 50px;
+        }
+
+        .search {
+            width: 300px;
+            height: 30px;
+            font-size: 16px;
+        }
+
+        .login {
+            float: right;
+            font-size: 18px;
+        }
+
+        /* MAIN CONTENT */
+        .main {
+            margin-left: 80px;
+            padding: 30px;
+        }
+
+        .intro-box {
+            background-color: lightgray;
+            width: 300px;
+            height: 400px;
+            display: inline-block;
+            text-align: center;
+            line-height: 300px;
+            margin-right: 30px;
+            font-size: 20px;
+        }
+        .intro-box img {
+
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+        }
+
+        .intro-text {
+            display: inline-block;
+            vertical-align: top;
+            font-size: 25px;
+        }
+
+        /* FLOWERS */
+        .carousel-container {
+            position: relative;
+            width: 1800px;
+            margin-top: 40px;
+        }
+
+        .carousel {
+            overflow: hidden;
+            width: 1700px;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s;
+        }
+
+        .flower-card {
+            background-color: lightgray;
+            width: 400px;
+            margin-right: 20px;
+            text-align: center;
+        }
+
+        .flower-card img {
+            width: 400px;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        /* ARROWS */
+        .arrow {
+            position: absolute;
+            top: 80px;
+            font-size: 40px;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .left {
+            left: -50px;
+        }
+
+        .right {
+            right: 50px;
+        }
+
+    </style>
+
+</head>
+
+
+<script>
+
+let position = 0;
+
+const cardWidth = 270; // 250 width + 20 margin
+const totalCards = 6;
+const visibleCards = 4;
+
+const maxPosition = -(cardWidth * (totalCards - visibleCards));
+
+function moveRight()
+{
+    const track = document.getElementById("track");
+
+    position -= cardWidth;
+
+    if(position < maxPosition)
+    {
+        position = 0;
+    }
+
+    track.style.transform = "translateX(" + position + "px)";
+}
+
+function moveLeft()
+{
+    const track = document.getElementById("track");
+
+    position += cardWidth;
+
+    if(position > 0)
+    {
+        position = maxPosition;
+    }
+
+    track.style.transform = "translateX(" + position + "px)";
+}
+
+setInterval(moveRight, 5000);
+
+</script>
+
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+
+        <a href="index.html">
+            <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png">
+            <span>Home</span>
+        </a>
+
+        <a href="flowers.html">
+            <img src="https://icons.veryicon.com/png/o/miscellaneous/office-4/bullet-list.png">
+            <span>Flowers</span>
+        </a>
+
+        <a href="location.html">
+            <img src="https://www.iconpacks.net/icons/2/free-location-icon-2952-thumb.png">
+            <span>Location</span>
+        </a>
+
+        <a href="contact.html">
+            <img src="https://cdn-icons-png.flaticon.com/512/3095/3095583.png">
+            <span>Contact</span>
+        </a>
+
+    </div>
+
+
+    <!-- HEADER -->
+    <div class="header">
+
+        <h1>Flower Shop</h1>
+
+        <input class="search" type="text" placeholder="Search">
+
+        <div class="login">
+        <a href="signin.html" style="color:white; text-decoration:none;">Log in</a>
+        </div>
+
+    </div>
+
+
+    <!-- MAIN -->
+    <div class="main">
+
+        <div class="intro-box">
+            <img src="images/520a73a9-1f2c-4a44-955e-81328a85d99d.jpg">
+        </div>
+
+        <div class="intro-text">
+            <h1>Welcome</h1>
+            <p>Flowershop owned by Saina.</p>
+            <p>Site made by Duk and Misheel.</p>
+            <p>Cameraman Abi.</p>
+            <p>Flowers planted by Hashka.</p>
+            <p>Fund by Tugu.</p>
+        </div>
+
+
+        <div class="carousel-container">
+
+            <button class="arrow left" onclick="moveLeft()">❮</button>
+
+            <div class="carousel">
+
+                <div class="carousel-track" id="track">
+
+                    <div class="flower-card">
+                        <img src="https://i.pinimg.com/564x/b4/f9/41/b4f941ccdf017a95d499dec7b4410ca1.jpg">
+                        <p>Sunflower</p>
+                    </div>
+
+                    <div class="flower-card">
+                        <img src="https://www.theblissfulgardeners.com/wp-content/uploads/2017/07/39ba7f40-33d3-4487-b061-2ff4c96d5729.jpg">
+                        <p>Lip Rose</p>
+                    </div>
+
+                    <div class="flower-card">
+                        <img src="https://www.blossominggifts.com/blog/wp-content/uploads/2022/09/monkey-face-orchid.jpg">
+                        <p>Monkey Flower</p>
+                    </div>
+
+                    <div class="flower-card">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9-sL7PAkLn3ScGJ54ZTL1UNlnp272bkCPpQ&s">
+                        <p>Long Flower</p>
+                    </div>
+
+                    <div class="flower-card">
+                        <img src="https://flowerpowerdaily.com/wp-content/uploads/2020/04/Screen-Shot-2020-04-02-at-11.07.19-AM.png">
+                        <p>Saina's lost children</p>
+                    </div>
+
+                    <div class="flower-card">
+                        <img src="https://fantasticservicesgroup.com.au/blog/wp-content/uploads/2023/09/Duck-Orchid-Calean.jpg">
+                        <p>Duck</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <button class="arrow right" onclick="moveRight()">❯</button>
+
+        </div>
+    </div>
+
+    
+
+</body>
+
+</html>
